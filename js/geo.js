@@ -11,7 +11,7 @@ Map.prototype.initMap = function (newLat, newLong) {
   Map.prototype.getStreetView = function (newLat, newLong) {
     var panorama = new google.maps.StreetViewPanorama(
     document.getElementById('map'), {
-      position: {lat: 37.869260, lng: -122.254811},
+      position: {lat: newLat, lng: newLong},
       pov: {heading: 165, pitch: 0},
       motionTracking: false
     });
@@ -21,3 +21,4 @@ Map.prototype.initMap = function (newLat, newLong) {
 
 
 exports.mapModule = Map;
+//position: {lat: 37.869260, lng: -122.254811},
