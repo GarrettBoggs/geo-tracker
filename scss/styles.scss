@@ -1,0 +1,25 @@
+$gray : #d3d3d3;
+$green : #75B975;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ #map {
+   height: 70%;
+   width: 70%;
+ }
+
+ .centerMap {
+   
+ }
+
+h1 {
+  color: $gray;
+}
+
+.col-sm-2 {
+  margin: 1rem auto;
+}
