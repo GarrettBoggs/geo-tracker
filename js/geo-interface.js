@@ -1,25 +1,32 @@
-var apiKey = require('./../.env').apiKey;
+//var apiKey = require('./../.env').apiKey;
 var Map = require('./../js/geo.js').mapModule;
 
 $(document).ready(function(){
   var newMap = new Map();
   var map;
+  var lat;
   $.get('https://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10&key=AIzaSyBStk9s-BaIB1CKNciuG_TXCvfeLQJYc6o').then(function(response) {
-  console.log(response);
-  newMap.initMap(45, -122);
+  //console.log(response);
+     newMap.initMap(45, -122);
 
-  $("#lats").submit(function(event){
+    $("#lats").submit(function(event){
+      event.preventDefault();
+      var lat = parseFloat($("#latitude").val());
+      var long = parseFloat($("#longitude").val());
+      newMap.getStreetView(lat, long);
+    });
+
+  });
+
+  $("#submit-city").submit(function(event){
     event.preventDefault();
-    var lat = parseFloat($("#latitude").val());
-    var long = parseFloat($("#longitude").val());
-    newMap.getStreetView(lat, long);
-    // $.get('https://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10&key=AIzaSyBStk9s-BaIB1CKNciuG_TXCvfeLQJYc6o').then(function(response2) {
-    //   console.log(response2);
-    // });
-
-  });
-      //console.log(JSON.stringify(response));
-      // $("#map-display").append(response);
-  });
+    var city = $("#city").val();
+    $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + city  + ',+' + '&key= AIzaSyDfb4v-EmKos5paWeelqEGYoOJlvuQr03w').then(function(response) {
+      var lat = response.results[0].geometry.location.lat;
+      var long = response.results[0].geometry.location.lng;
+      console.log(lat +"Front end" + long);
+      newMap.initMap(lat, long);
+      });
+    });
 
 });

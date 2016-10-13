@@ -2,11 +2,13 @@ function Map() {
 
 }
 
-Map.prototype.initMap = function (newLat, newLong) {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: newLat , lng: newLong},
-    zoom: 8
-  });
+  Map.prototype.initMap = function (newLat, newLong) {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: newLat , lng: newLong},
+      zoom: 8
+    });
+  };
+
 
   Map.prototype.getStreetView = function (newLat, newLong) {
     var panorama = new google.maps.StreetViewPanorama(
@@ -16,9 +18,6 @@ Map.prototype.initMap = function (newLat, newLong) {
       motionTracking: false
     });
   };
-
-};
-
-
+  
 exports.mapModule = Map;
 //position: {lat: 37.869260, lng: -122.254811},
